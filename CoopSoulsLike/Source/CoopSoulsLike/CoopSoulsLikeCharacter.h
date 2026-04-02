@@ -49,6 +49,14 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MouseLookAction;
 
+	/* If true, movement / jump input should be ignored */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character State")
+	bool bIsMovementLocked = false;
+
+	/* If true, character is mid jump else is false */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character State")
+	bool bIsJumping = false;
+
 public:
 
 	/** Constructor */
@@ -84,6 +92,13 @@ public:
 	/** Handles jump pressed inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
+
+	/* Lock/unlock movement from blueprint or C++ */
+	UFUNCTION(BlueprintCallable, Category = "Character State")
+	void SetMovementLocked(bool bLocked);
+
+	UFUNCTION(BlueprintPure, Category = "Character State")
+	bool IsMovementLocked() const { return bIsMovementLocked; }
 
 public:
 

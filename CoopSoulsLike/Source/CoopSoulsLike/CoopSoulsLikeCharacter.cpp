@@ -56,7 +56,7 @@ void ACoopSoulsLikeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
 		// Jumping
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACoopSoulsLikeCharacter::DoJumpStart);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 
 		// Moving
@@ -74,6 +74,10 @@ void ACoopSoulsLikeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 
 void ACoopSoulsLikeCharacter::Move(const FInputActionValue& Value)
 {
+	if (bIsMovementLocked)
+	{
+		return;
+	}
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
 
@@ -92,6 +96,10 @@ void ACoopSoulsLikeCharacter::Look(const FInputActionValue& Value)
 
 void ACoopSoulsLikeCharacter::DoMove(float Right, float Forward)
 {
+	if (bIsMovementLocked)
+	{
+		return;
+	}
 	if (GetController() != nullptr)
 	{
 		// find out which way is forward
@@ -122,6 +130,10 @@ void ACoopSoulsLikeCharacter::DoLook(float Yaw, float Pitch)
 
 void ACoopSoulsLikeCharacter::DoJumpStart()
 {
+	if (bIsMovementLocked)
+	{
+		return;
+	}
 	// signal the character to jump
 	Jump();
 }
@@ -130,4 +142,9 @@ void ACoopSoulsLikeCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();
+}
+
+void ACoopSoulsLikeCharacter::SetMovementLocked(bool bLocked)
+{
+	bIsMovementLocked = bLocked;
 }
