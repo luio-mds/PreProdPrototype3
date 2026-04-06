@@ -18,10 +18,15 @@ public class CoopSoulsLike : ModuleRules
 			"StateTreeModule",
 			"GameplayStateTreeModule",
 			"UMG",
-			"Slate"
-		});
+			"Slate",
+            "OnlineSubsystem",
+            "OnlineSubsystemUtils",
+			"NetCore"
+        });
 
-		PrivateDependencyModuleNames.AddRange(new string[] { });
+        DynamicallyLoadedModuleNames.Add("OnlineSubsystemSteam");
+
+        PrivateDependencyModuleNames.AddRange(new string[] { });
 
 		PublicIncludePaths.AddRange(new string[] {
 			"CoopSoulsLike",
