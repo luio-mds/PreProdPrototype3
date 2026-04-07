@@ -158,7 +158,7 @@ bool UNP_GameInstance::HostSession(
 	SessionSettings->bAllowJoinViaPresenceFriendsOnly = false;
 	SessionSettings->bUseLobbiesIfAvailable = true;
 
-	SessionSettings->Set(SETTING_MAPNAME, FString(TEXT("Lvl_NetworkTest")), EOnlineDataAdvertisementType::ViaOnlineService);
+	SessionSettings->Set(SETTING_MAPNAME, FString(TEXT("Lvl_ThirdPerson")), EOnlineDataAdvertisementType::ViaOnlineService);
 	SessionSettings->Set(SEARCH_KEYWORDS, InSearchKeyword, EOnlineDataAdvertisementType::ViaOnlineService);
 	SessionSettings->Set(MATCH_TYPE_KEY, FString(TEXT("CoopSoulsLike")), EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
@@ -554,18 +554,7 @@ void UNP_GameInstance::NP_OnJoinSessionComplete(FName SessionName, EOnJoinSessio
 	{
 		if (bHasConnect)
 		{
-			if (GEngine)
-			{
-				GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Green,
-					FString::Printf(TEXT("Traveling")));
-			}
 			PC->ClientTravel(TravelURL, ETravelType::TRAVEL_Absolute);
-
-			if (GEngine)
-			{
-				GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Green,
-					FString::Printf(TEXT("after Traveling")));
-			}
 		}
 	}
 }

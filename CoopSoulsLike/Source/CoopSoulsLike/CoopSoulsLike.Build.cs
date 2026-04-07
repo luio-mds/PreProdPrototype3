@@ -24,9 +24,9 @@ public class CoopSoulsLike : ModuleRules
 			"NetCore"
         });
 
-        DynamicallyLoadedModuleNames.Add("OnlineSubsystemSteam");
-
         PrivateDependencyModuleNames.AddRange(new string[] { });
+
+        DynamicallyLoadedModuleNames.Add("OnlineSubsystemSteam");
 
 		PublicIncludePaths.AddRange(new string[] {
 			"CoopSoulsLike",
