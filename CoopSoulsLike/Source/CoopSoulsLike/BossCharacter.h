@@ -49,7 +49,7 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Boss|Health")
     float MaxHealth = 3000.f;
 
-    UPROPERTY(BlueprintReadOnly, Category = "Boss|Health")
+    UPROPERTY(BlueprintReadWrite, Category = "Boss|Health")
     float CurrentHealth;
 
     // Multiplier applied to all incoming damage (2.0 when dish is drained)
