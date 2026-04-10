@@ -66,7 +66,7 @@ public:
 	void FindOnlineGame();
 
 	UFUNCTION(BlueprintCallable, Category = "Network|Connection")
-	void JoinOnlineGame();
+	void JoinOnlineGame(bool& _condition);
 
 	UFUNCTION(BlueprintCallable, Category = "Network|Connection")
 	bool JoinSessionByIndex(int32 SessionIndex);
@@ -88,6 +88,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Network|Sessions")
 	void OnSessionsUpdated();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Network|Sessions")
+	void OnSessionsNotFound();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Network|Sessions")
 	void OnSessionStarted();
