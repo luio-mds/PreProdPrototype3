@@ -288,9 +288,9 @@ void UNP_GameInstance::FindOnlineGame()
 	FindSessions(UserId, bIsLAN, true, SearchKeyword);
 }
 
-void UNP_GameInstance::JoinOnlineGame()
+void UNP_GameInstance::JoinOnlineGame(bool& _condition)
 {
-	JoinSessionByIndex(0);
+	_condition = JoinSessionByIndex(0);
 }
 
 bool UNP_GameInstance::JoinSessionByIndex(int32 SessionIndex)
@@ -462,6 +462,7 @@ void UNP_GameInstance::NP_OnFindSessionsComplete(bool bSuccess)
 			GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Yellow, TEXT("No online sessions found"));
 		}
 		OnSessionsUpdated();
+		OnSessionsNotFound();
 		return;
 	}
 
